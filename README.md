@@ -15,8 +15,11 @@ Two versions are implemented:
 
 * Temperature-Heater-Control
  ├── Project-1-TMP36-Analog
+
  ├── Project-2-LM75-I2C
+ 
  ├── README.md (this file)
+ 
  └── ...
 
 
