@@ -24,11 +24,6 @@ Two versions are implemented:
  └── ...
 
 
-# Project 2 is the advanced version of Project 1.
-
-Both share identical FSM + heater logic.
-Only the sensing method changes.
-
 # Project Variants
 
 # Project 1 — Analog Temperature Sensor (TMP36)
