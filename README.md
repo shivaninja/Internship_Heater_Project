@@ -107,10 +107,14 @@ If temperature ≥ 40°C → Stabilize state
 
 If temperature ≥ 50°C → Emergency shutdown
 
-Why Two Versions?
+## Why Two Versions?
+
 Version	Sensor Type	Communication	Stability	Industrial Use
+
 Project 1	TMP36	None (Analog)	Medium	Hobby use
+
 Project 2	LM75	I²C digital	High	Embedded / HVAC
+
 ## Pin Connections
 ## Heater / Relay
 D8 → Heater / LED
