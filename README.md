@@ -93,7 +93,7 @@ TARGET_REACHED – Stable temperature maintained
 
 OVERHEAT – Emergency shutdown + warning LED
 
-# Temperature Logic
+## Temperature Logic
 Key parameters
 const float targetTemp = 40.0;   // Desired temperature (°C)
 const float hysteresis = 2.0;    // Buffer to prevent rapid switching
@@ -106,3 +106,66 @@ If temperature < 38°C → Heater ON
 If temperature ≥ 40°C → Stabilize state
 
 If temperature ≥ 50°C → Emergency shutdown
+
+Why Two Versions?
+Version	Sensor Type	Communication	Stability	Industrial Use
+Project 1	TMP36	None (Analog)	Medium	Hobby use
+Project 2	LM75	I²C digital	High	Embedded / HVAC
+## Pin Connections
+## Heater / Relay
+D8 → Heater / LED
+
+## Overheat Indicator
+D13 → LED
+
+## Sensor Wiring
+```
+
+TMP36 (Project 1)
+VCC → 5V
+GND → GND
+OUT → A0
+
+LM75 (Project 2 – I²C)
+SDA → A4
+SCL → A5
+VCC → 3.3V
+GND → GND
+
+```
+
+## Requirements
+
+Arduino IDE
+
+Arduino UNO
+
+C++ / Arduino Framework
+
+TMP36 sensor (Analog) OR LM75 (I²C)
+
+## Core Concepts Demonstrated
+
+✔ ADC reading
+✔ I²C communication
+✔ Sensor data conversion
+✔ State machine design pattern
+✔ Heat control logic (PID-like hysteresis)
+✔ Safety cut-off logic
+
+## Future Improvements
+
+PID controller instead of hysteresis
+
+OLED temperature display (SSD1306)
+
+Logging via UART/MQTT
+
+SPI sensor integration
+
+EEPROM calibration storage
+
+## Author
+
+Developed by: Shiva Panjugula
+Low-level programming, Embedded Systems & IoT
