@@ -172,5 +172,7 @@ EEPROM calibration storage
 
 ## Author
 
-Developed by: Shiva Panjugula
-Low-level programming, Embedded Systems & IoT
+Developed by: 
+
+Shiva Panjugula
+
