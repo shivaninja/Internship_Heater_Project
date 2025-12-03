@@ -1,35 +1,109 @@
 
-"READ ME"
+# Arduino Temperature-Controlled Heater System
 
-	IMPORTANT:  
-		NOTE: This Whole project folder consists of two Projects( PROJECT 1 & PROJECT 2).
-  		NOTE: Project 2 is updated version of 1. They both are very similar and uses same system.  The Only difference is the protocol & sensor they use.
+Using LM75 / TMP36 sensors with finite state machine control
+
+This project implements a smart heater controller using Arduino.
+It monitors temperature in real-time and adjusts heater output using a Finite State Machine (FSM).
+Two versions are implemented:
+
+### Project 1 — Analog Sensor (TMP36, No Protocols)
+
+### Project 2 — Digital I²C Sensor (LM75 using I²C / Wire.h)
+
+# Project Structure
+
+* Temperature-Heater-Control
+ ├── Project-1-TMP36-Analog
+ ├── Project-2-LM75-I2C
+ ├── README.md (this file)
+ └── ...
 
 
+# Project 2 is the advanced version of Project 1.
 
-	PROJECT 1:
-		(No SPI Protocol): This one does not uses the SPI communication protocol. 
-		It is implementation of " Header Control System " in Arduino. It uses built in ADC(Analog to digital converter) & its in built function "analogRead() to read the temperature"
- 		to read data from sensor. Project 1 acts as base project or template to more advance project 2. Project 1 is similar to project 2 except that it does not uses SPI and it uses TMP36 sensor.
-   		Make sure to inclue #include <Arduino.h> header.
+Both share identical FSM + heater logic.
+Only the sensing method changes.
 
+# Project Variants
 
-	PROJECT 2:
-		(Uses SPI Protocol): This one uses the SPI communication protocol. 
-		It is implementation of " Header Control System " in Arduino. It uses SPI protocol & its functions to read data/Temperature from sensor.
-  		So, make sure to include  "" #include <Wire.h> "" // Library for I²C communication & #include <Arduino.h> header.
-		Project 2 uses LM75 sensor.
+# Project 1 — Analog Temperature Sensor (TMP36)
 
+1. No communication protocols
+2. Uses Arduino’s internal ADC + analogRead()
+3. Acts as base template for the system
 
-	Minimum Hardware & Sensors Required:
- 		Arduino Uno.
-   		LED.
-	 	200 ohm resistors recommended.
-   		Conducting wires.
-		Temperature Sensor (TMP36 or LM75)                                                                              
-        	To measure the current temperature so the Arduino can decide whether to  turn the heater on or off.
-		Required: Analog: TMP36, LM75 — simple, low cost, connect to an analog input pin.
-		Not Required but recommended: Digital: DS18B20 (1-Wire), DHT22 (Not recommended because digital sensors can’t support analog)
-  
-		TMP36: Used when no protocol is used & TMP36 uses just in-built ADC                   
-        LM75: Can be used with communication protocols such as I2C.
+Sensor: TMP36
+Input Method: Raw ADC reading → Celsius Conversion
+Protocol: None
+
+Why TMP36?
+
+Directly outputs a voltage proportional to temperature
+
+Simple wiring
+
+No driver or communication protocol
+
+TMP36 → Analog Pin (A0) → Convert ADC → °C
+
+# Project 2 — I²C Temperature Sensor (LM75)
+
+1. Uses I²C protocol
+2. Reads temperature using Wire.h
+3. More accurate & digital temperature data
+
+Sensor: LM75
+Protocol: I²C
+Default Address: 0x48
+
+Why LM75?
+
+Built-in onboard ADC
+
+9-bit digital temperature
+
+No analog noise
+
+Supports high-precision industrial readings
+
+📡 Hardware Requirements
+Component	Purpose
+Arduino Uno	Microcontroller
+Heater Relay / LED	Simulated heater output
+200Ω resistor	Current-limiting (recommended)
+Wires	Connections
+TMP36 Sensor	For Project 1
+LM75 Sensor (I²C)	For Project 2
+LED (optional)	Overheat indicator
+ System Behavior — How It Works
+
+This firmware continuously monitors temperature and controls a heater based on thresholds.
+
+Implemented as a Finite State Machine (FSM)
+
+States:
+
+IDLE – Wait for temperature to drop below threshold
+
+HEATING – Heater ON
+
+STABILIZING – Heater OFF (temperature reached, cool-down window)
+
+TARGET_REACHED – Stable temperature maintained
+
+OVERHEAT – Emergency shutdown + warning LED
+
+# Temperature Logic
+Key parameters
+const float targetTemp = 40.0;   // Desired temperature (°C)
+const float hysteresis = 2.0;    // Buffer to prevent rapid switching
+const float overheatTemp = 50.0; // Safety limit (°C)
+
+Example behavior
+
+If temperature < 38°C → Heater ON
+
+If temperature ≥ 40°C → Stabilize state
+
+If temperature ≥ 50°C → Emergency shutdown
