@@ -146,12 +146,17 @@ TMP36 sensor (Analog) OR LM75 (I²C)
 
 ## Core Concepts Demonstrated
 
-✔ ADC reading
-✔ I²C communication
-✔ Sensor data conversion
-✔ State machine design pattern
-✔ Heat control logic (PID-like hysteresis)
-✔ Safety cut-off logic
+1. ADC reading
+
+2. I²C communication
+
+3. Sensor data conversion
+
+4. State machine design pattern
+
+5. Heat control logic (PID-like hysteresis)
+
+6. Safety cut-off logic
 
 ## Future Improvements
 
