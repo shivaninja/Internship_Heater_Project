@@ -26,7 +26,7 @@ Two versions are implemented:
 
 # Project Variants
 
-# Project 1 — Analog Temperature Sensor (TMP36)
+## Project 1 — Analog Temperature Sensor (TMP36)
 
 1. No communication protocols
 2. Uses Arduino’s internal ADC + analogRead()
@@ -46,7 +46,7 @@ No driver or communication protocol
 
 TMP36 → Analog Pin (A0) → Convert ADC → °C
 
-# Project 2 — I²C Temperature Sensor (LM75)
+## Project 2 — I²C Temperature Sensor (LM75)
 
 1. Uses I²C protocol
 2. Reads temperature using Wire.h
