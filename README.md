@@ -111,9 +111,9 @@ If temperature ≥ 50°C → Emergency shutdown
 
 Version	Sensor Type	Communication	Stability	Industrial Use
 
-Project 1	TMP36	None (Analog)	Medium	Hobby use
+### Project 1	TMP36	None (Analog)	Medium	Hobby use
 
-Project 2	LM75	I²C digital	High	Embedded / HVAC
+### Project 2	LM75	I²C digital	High	Embedded / HVAC
 
 ## Pin Connections
 ## Heater / Relay
