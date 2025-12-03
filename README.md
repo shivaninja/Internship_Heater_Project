@@ -21,7 +21,6 @@ Two versions are implemented:
  
  ├── README.md (this file)
  
- └── ...
 
 
 # Project Variants
